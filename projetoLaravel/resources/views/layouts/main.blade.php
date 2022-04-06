@@ -19,8 +19,8 @@
         </style>
         
 
-        <link rel='stylesheet' href='css/styles.css'>
-        <script src='js/script.js'></script>
+        <link rel='stylesheet' href='/css/styles.css'>
+        <script src='/js/script.js'></script>
 
         <style>
             body {
@@ -53,7 +53,17 @@
             </nav>
         </header>
 
-        @yield('content')
+        <main>
+            <div class="container-fluid">
+                <div class="row">
+                    @if(session('msg'))
+                        <p class='msg'> {{@session('msg')}}</p>
+                    @endif
+                    @yield('content')
+                </div>
+            </div>
+
+        </main>
         <footer>
             <p> Gabriel Ferla 2022</p>
         </footer>
