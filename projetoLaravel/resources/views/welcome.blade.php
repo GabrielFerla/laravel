@@ -7,13 +7,18 @@
 
 <div id="search-container" class="col-md-12">
     <h1>Busque um evento</h1>
-    <form action="">
+    <form action="/" method="get">
         <input type="text" name="search" id="search" class='form-control' placeholder="procurar">
     </form>
 </div>
 
 <div id="events-container" class="col-md-12">
+    @if($search)
+    <h2>Buscando por {{$search}}</h2>
+ 
+    @else
     <h2>Proximos Eventos</h2>
+    @endif
     <p class='subtitle'>Veja os eventos dos proximos dias</p>
     <div id="cards-container" class='row'>
         @foreach($events as $event)
@@ -28,7 +33,9 @@
             </div>
         </div>
         @endforeach
-        @if(count($events) == 0)
+        @if(count($events) == 0 && $search)
+            <p>Nenhum evento encontrado com nome {{$search}}</p><a href='/'> Ver Todos</a>
+        @elseif(count($events) == 0)
             <p>Nenhum evento encontrado</p>
         @endif
     </div>
